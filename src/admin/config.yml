@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: YOUR-USERNAME/game-portal
+  branch: main
+
+media_folder: "src/images/games"
+public_folder: "/images/games"
+
+collections:
+  - name: "games"
+    label: "Games"
+    folder: "src/_data/games"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "URL", name: "url", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", 
+         options: ["Action", "Puzzle", "Strategy", "Casual"]}
+      - {label: "Tags", name: "tags", widget: "list"}
