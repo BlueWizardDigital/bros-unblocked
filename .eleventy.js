@@ -59,6 +59,7 @@ module.exports = function(eleventyConfig) {
 		return new Date().getFullYear();
 	  });
 	return {
+	  pathPrefix: "/bros-unblocked/",
 	  dir: {
 		input: "src",
 		output: "_site"

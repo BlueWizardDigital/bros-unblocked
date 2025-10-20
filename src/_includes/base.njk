@@ -12,7 +12,7 @@
   <meta name="google-adsense-account" content="{{ site.adsense }}">
   
   {# Stylesheets #}
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
   
   {# AdSense Script #}
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense }}"
@@ -33,7 +33,7 @@
   {% include "footer.njk" %}
   
   {# Global JavaScript #}
-  <script src="/js/main.js"></script>
+  <script src="{{ '/js/main.js' | url }}"></script>
 
   {# Page-specific scripts - override in child templates #}
   {% block pageScripts %}{% endblock %}
