@@ -31,10 +31,10 @@
 
       {# Main Navigation #}
       <nav class="main-nav">
-        <a href="{{ / | url }}" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
-        <a href="{{ /games | url }}" {% if page.url == "/games" %}class="active"{% endif %}>Games</a>
+        <a href="{{ '/' | url }}" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+        <a href="{{ '/games' | url }}" {% if page.url == "/games" %}class="active"{% endif %}>Games</a>
 		{% for page in pages %}
-			<a href="/" {% if page.url == "/page.url" %}class="active"{% endif %}>{{ page.title }}</a>
+			<a href="{{ '/' | url ~ page.slug }}/">{{ page.title }}</a>
 		{% endfor %}
         <!-- <a href="/categories" {% if page.url == "/categories" %}class="active"{% endif %}>Categories</a>
         <a href="{{ /about| url }}" {% if page.url == "/about" %}class="active"{% endif %}>About</a>
