@@ -10,7 +10,7 @@ async function loadContent() {
   if (allContent) return;
   
   try {
-    const response = await fetch('./content.json');
+    const response = await fetch('/bros-unblocked/content.json');
     allContent = await response.json();
   } catch (error) {
     console.error('Failed to load content:', error);
@@ -85,11 +85,11 @@ function formatResult(item) {
 function getResultLink(item) {
   switch(item.type) {
     case 'game':
-      return `/games/${item.slug}/`;
+      return `/bros-unblocked/games/${item.slug}/`;
     case 'page':
-      return `/${item.slug}/`;
+      return `/bros-unblocked/${item.slug}/`;
     case 'category':
-      return `/category/${item.slug}/`;
+      return `/bros-unblocked/category/${item.slug}/`;
     default:
       return '#';
   }

@@ -30,8 +30,8 @@ function renderGamesPage(page = 1) {
   
   const html = pageGames.map(game => `
     <div class="game-card">
-	  <a href="/games/${game.slug}/">
-        <img src="${game.image}" alt="${game.title}">
+	  <a href="/bros-unblocked/games/${game.slug}/">
+        <img src="/bros-unblocked/${game.image}" alt="${game.title}">
         <h3>${game.title}</h3>
         <p class="game-desc">${game.description.substring(0, 100)}...</p>
         <span class="category-badge">${game.category}</span>

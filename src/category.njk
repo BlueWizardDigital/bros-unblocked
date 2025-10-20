@@ -22,7 +22,7 @@ eleventyCompute:
   {% for game in categoryGames %}
     <div class="game-card">
       <a href="{{ '/games/' | url ~ game.slug }}/">
-        <img src="{{ game.image }}" alt="{{ game.title }}">
+        <img src="{{ game.image | url }}" alt="{{ game.title }}">
         <h3>{{ game.title }}</h3>
         <p class="game-desc">{{ game.description | truncate(100) }}</p>
         <span class="category-badge">{{ game.category }}</span>

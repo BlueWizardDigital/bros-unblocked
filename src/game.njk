@@ -33,7 +33,7 @@ description: "{{ game.description }}"
         {# Game Info #}
         <h1>{{ game.title }}</h1>
         <div class="game-meta">
-          <a href="{{ '/category/' | url ~ game.category | slug }}" class="tag">{{ game.category }}</a><span class="category">{{ game.category }}</span></a>
+          <a href="{{ '/category/' | url ~ game.category | slug }}" class="tag"><span class="category">{{ game.category }}</span></a>
         </div>
 
         {# Game Iframe #}
