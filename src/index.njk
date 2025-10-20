@@ -73,7 +73,7 @@ description: Play thousands of free online games instantly. No downloads require
         {% for game in games %}
           <article class="game-card">
             <a href="{{ '/games/' | url ~ game.slug }}/">
-              <img src="{{ game.image }}" alt="{{ game.title }}">
+              <img src="{{ game.image | url }}" alt="{{ game.title }}">
               <h3>{{ game.title }}</h3>
               <p>{{ game.category }}</p>
             </a>

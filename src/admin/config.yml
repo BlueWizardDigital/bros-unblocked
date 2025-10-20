@@ -7,8 +7,6 @@ backend:
   name: github
   repo: BlueWizardDigital/bros-unblocked
   branch: main
-  auth_endpoint: api/auth
-  base_url: https://bluewizarddigital.github.io/bros-unblocked
 
 media_folder: "src/images/games"
 public_folder: "/images/games"
