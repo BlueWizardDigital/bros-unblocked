@@ -7,6 +7,7 @@ backend:
   name: github
   repo: BlueWizardDigital/bros-unblocked
   branch: main
+  app_id: Ov23liXPyuleRKypOkCL
 
 media_folder: "src/images/games"
 public_folder: "/images/games"
