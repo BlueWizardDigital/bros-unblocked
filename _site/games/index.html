@@ -55,7 +55,7 @@
 
       
       <nav class="main-nav">
-        <a href="/" class="active">Home</a>
+        <a href="/" >Home</a>
         <a href="/games" >Games</a>
 		
 			<a href="/" >Contact</a>
@@ -81,94 +81,77 @@
   
   
   <main class="site-main">
-    
-
-
-<div class="homepage">
-
-  
-  <section class="hero" style="background-image: url('/images/games/basket-bros.webp')">
     <div class="container">
-      <h1>Bros Unlocked!</h1>
-  </section>
-
-  
-  <section class="featured-games">
-    <div class="container">
-      <h2>⭐ Featured Games</h2>
-
-      <div class="games-grid">
-        
-          
-            <article class="game-card">
-              <a href="/games/basket-bros">
-                <img src="/images/games/basket-bros.webp" alt="Basket Bros">
-                <h3>Basket Bros</h3>
-                <p>Sports</p>
-              </a>
-            </article>
-          
-        
-      </div>
-
-      
-      <div class="ad-container ad-infeed">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-             data-ad-slot="6677889900"
-             data-ad-format="fluid"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="categories">
-    <div class="container">
-		<h2>Categories</h2>
-		<div class="categories-grid">
-		
-			<a href="/category/sports" class="category-box">
-			<span>⚡</span>
-			<h3>Sports</h3>
-			<p>Fast-paced sport excitement</p>
-			</a>
-		
-			<a href="/category/mobile-games" class="category-box">
-			<span>🧩</span>
-			<h3>Mobile Games</h3>
-			<p>Play it on mobile devices.</p>
-			</a>
-		
-		</div>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="all-games">
-    <div class="container">
-      <h2>All Games</h2>
-
-      <div class="games-grid">
-        
-          <article class="game-card">
-            <a href="/games/basket-bros">
-              <img src="/images/games/basket-bros.webp" alt="Basket Bros">
-              <h3>Basket Bros</h3>
-              <p>Sports</p>
-            </a>
-          </article>
-        
-      </div>
-    </div>
-  </section>
-
+	<div class="games-header">
+	<h1>All Games</h1>
+	<p class="game-count">1 games available</p>
+	</div>
+	<div id="allGamesContainer" class="games-grid"></div>
+	<div id="gamesPagination" class="pagination"></div>
 </div>
 
+<script>
+const GAMES_PER_PAGE = 10;
+const allGames = [{"instructions":"Move - WASD\n\nJump - Space\n\nThrow - Space\n\nTackle - Space\n\nChange receiver  - Space\n\nMenu select - Mouse + Left Click","slug":"basket-bros","featured":true,"url":"https://brodeliver.github.io/bb/","embedType":"iframe","title":"Basket Bros","tags":["MobileGames"],"id":"puzzle-master-002","image":"/images/games/basket-bros.webp","description":"Football Bros is a fast-paced, action-packed multiplayer football game where strategy meets chaos! Play solo and dominate the turf in Quick Play or climb to glory in Franchise Mode, competing for the coveted Super Bro Bowl Championship. Or, go head to head against your bros either online or on the same computer. Choose your favorite teams, call the plays, and outsmart opponents. Whether you're a playbook pro or just in it for the shenanigans, FootballBros.io brings the heat with arcade-style action, customizable players, and a side of over-the-top bro energy. FootballBros.io: The Ultimate Bro-tastic Gridiron Showdown!","category":"Sports"}];
+let currentPage = 1;
+
+function renderGamesPage(page = 1) {
+  currentPage = page;
+  
+  const totalPages = Math.ceil(allGames.length / GAMES_PER_PAGE);
+  const start = (page - 1) * GAMES_PER_PAGE;
+  const pageGames = allGames.slice(start, start + GAMES_PER_PAGE);
+  
+  const container = document.getElementById('allGamesContainer');
+  
+  const html = pageGames.map(game => `
+    <div class="game-card">
+      <a href="/games/${game.slug}/">
+        <img src="${game.image}" alt="${game.title}">
+        <h3>${game.title}</h3>
+        <p class="game-desc">${game.description.substring(0, 100)}...</p>
+        <span class="category-badge">${game.category}</span>
+      </a>
+    </div>
+  `).join('');
+  
+  container.innerHTML = html;
+  renderGamesPagination(page, totalPages);
+}
+
+function renderGamesPagination(currentPage, totalPages) {
+  const paginationContainer = document.getElementById('gamesPagination');
+  let html = '';
+  
+  if (totalPages <= 1) {
+    paginationContainer.innerHTML = '';
+    return;
+  }
+  
+  if (currentPage > 1) {
+    html += `<a href="#" onclick="renderGamesPage(${currentPage - 1}); return false;">← Previous</a>`;
+  }
+  
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === currentPage) {
+      html += `<span class="current">${i}</span>`;
+    } else {
+      html += `<a href="#" onclick="renderGamesPage(${i}); return false;">${i}</a>`;
+    }
+  }
+  
+  if (currentPage < totalPages) {
+    html += `<a href="#" onclick="renderGamesPage(${currentPage + 1}); return false;">Next →</a>`;
+  }
+  
+  paginationContainer.innerHTML = html;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  renderGamesPage(1);
+});
+</script>
   </main>
   
   

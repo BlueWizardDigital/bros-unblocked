@@ -1,0 +1,57 @@
+{# Footer Template - Used on all pages #}
+
+<footer class="site-footer">
+  <div class="container">
+    
+    {# Footer Banner Ad #}
+    <div class="ad-container ad-footer">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+           data-ad-slot="5678901234"
+           data-ad-format="horizontal"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    {# Footer Content Grid #}
+    <div class="footer-content">
+      
+      {# About Section #}
+      <div class="footer-section">
+        <h4>{{ site.title }}</h4>
+        <p>{{ site.description }}</p>
+      </div>
+
+      {# Quick Links #}
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/games">All Games</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      {# Legal #}
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+		  {% for link in site.legalLinks %}
+			<li><a href="{{ link.url }}" target="_blank">{{ link.label }}</a><li>
+		  {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+
+    {# Footer Bottom #}
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} {{ site.title }}. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>

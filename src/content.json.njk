@@ -1,0 +1,14 @@
+{
+  "games": {{ games | dump | safe }},
+  "pages": {{ pages | dump | safe }},
+  "categories": {{ categories | dump | safe }},
+  "meta": {
+    "lastUpdated": "{{ 'now' | dateFilter }}",
+    "version": "1.0",
+    "counts": {
+      "games": {{ games | length }},
+      "pages": {{ pages | length }},
+      "categories": {{ categories | length }}
+    }
+  }
+}

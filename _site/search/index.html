@@ -55,7 +55,7 @@
 
       
       <nav class="main-nav">
-        <a href="/" class="active">Home</a>
+        <a href="/" >Home</a>
         <a href="/games" >Games</a>
 		
 			<a href="/" >Contact</a>
@@ -82,92 +82,21 @@
   
   <main class="site-main">
     
-
-
-<div class="homepage">
-
-  
-  <section class="hero" style="background-image: url('/images/games/basket-bros.webp')">
-    <div class="container">
-      <h1>Bros Unlocked!</h1>
-  </section>
-
-  
-  <section class="featured-games">
-    <div class="container">
-      <h2>⭐ Featured Games</h2>
-
-      <div class="games-grid">
-        
-          
-            <article class="game-card">
-              <a href="/games/basket-bros">
-                <img src="/images/games/basket-bros.webp" alt="Basket Bros">
-                <h3>Basket Bros</h3>
-                <p>Sports</p>
-              </a>
-            </article>
-          
-        
-      </div>
-
-      
-      <div class="ad-container ad-infeed">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-             data-ad-slot="6677889900"
-             data-ad-format="fluid"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="categories">
-    <div class="container">
-		<h2>Categories</h2>
-		<div class="categories-grid">
-		
-			<a href="/category/sports" class="category-box">
-			<span>⚡</span>
-			<h3>Sports</h3>
-			<p>Fast-paced sport excitement</p>
-			</a>
-		
-			<a href="/category/mobile-games" class="category-box">
-			<span>🧩</span>
-			<h3>Mobile Games</h3>
-			<p>Play it on mobile devices.</p>
-			</a>
-		
-		</div>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="all-games">
-    <div class="container">
-      <h2>All Games</h2>
-
-      <div class="games-grid">
-        
-          <article class="game-card">
-            <a href="/games/basket-bros">
-              <img src="/images/games/basket-bros.webp" alt="Basket Bros">
-              <h3>Basket Bros</h3>
-              <p>Sports</p>
-            </a>
-          </article>
-        
-      </div>
-    </div>
-  </section>
-
+<div class="search-header">
+  <h1>Search Games</h1>
+  <div class="search-container">
+    <input 
+      type="text" 
+      id="searchPageInput" 
+      placeholder="Search games, pages, categories..."
+      autocomplete="off"
+    >
+    <div id="searchDropdown" class="search-dropdown"></div>
+  </div>
 </div>
+
+<div id="searchResults" class="search-results container"></div>
+<div id="pagination" class="pagination container"></div>
 
   </main>
   

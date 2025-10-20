@@ -1,0 +1,98 @@
+[
+	{
+		"id": "puzzle-master-001",
+		"slug": "puzzle-master",
+		"title": "Puzzle Master",
+		"description": "Challenge your mind with this addictive puzzle game! Match colors, solve patterns, and unlock new levels as you progress through 100+ brain-teasing challenges.",
+		"longDescription": "Puzzle Master is the ultimate brain training game that will keep you entertained for hours. With stunning graphics, smooth gameplay, and progressively challenging levels, this game is perfect for puzzle enthusiasts of all ages.",
+		"category": "Puzzle",
+		"tags": ["puzzle", "brain-teaser", "logic", "casual", "family-friendly"],
+		"image": "https://via.placeholder.com/400x300/4ecdc4/ffffff?text=Puzzle+Master",
+		"thumbnail": "https://via.placeholder.com/200x150/4ecdc4/ffffff?text=Puzzle",
+		"url": "https://example.com/games/puzzle-master/index.html",
+		"embedType": "iframe",
+		"rating": 4.7,
+		"plays": 15234,
+		"dateAdded": "2024-10-15",
+		"featured": true,
+		"instructions": "<p>Match three or more blocks of the same color to clear them from the board. Create special power-ups by matching 4 or more blocks!</p><ul><li>Clear all blocks to complete the level</li><li>Use power-ups strategically</li><li>Try to get 3 stars on every level</li></ul>",
+		"controls": [
+		  {
+			"key": "Mouse/Touch",
+			"action": "Select and swap blocks"
+		  },
+		  {
+			"key": "Spacebar",
+			"action": "Use power-up"
+		  },
+		  {
+			"key": "R",
+			"action": "Restart level"
+		  }
+		],
+		"seo": {
+		  "metaTitle": "Puzzle Master - Free Online Puzzle Game | Brain Teasers",
+		  "metaDescription": "Play Puzzle Master free online! Match colors, solve patterns, and challenge your brain with 100+ addictive puzzle levels. No download required!",
+		  "keywords": ["puzzle game", "brain teaser", "match 3", "free online game", "logic puzzle"]
+		},
+		"developer": {
+		  "name": "GameDev Studio",
+		  "website": "https://gamedevstudio.example.com"
+		},
+		"technicalSpecs": {
+		  "width": 800,
+		  "height": 600,
+		  "mobile": true,
+		  "touchEnabled": true,
+		  "fullscreenSupported": true
+		}
+	  },
+	  {
+		"id": "puzzle-master-002",
+		"slug": "puzzle-master-2",
+		"title": "Puzzle Master 2",
+		"description": "Challenge your mind with this addictive puzzle game! Match colors, solve patterns, and unlock new levels as you progress through 100+ brain-teasing challenges.",
+		"longDescription": "Puzzle Master is the ultimate brain training game that will keep you entertained for hours. With stunning graphics, smooth gameplay, and progressively challenging levels, this game is perfect for puzzle enthusiasts of all ages.",
+		"category": "Puzzle",
+		"tags": ["puzzle", "brain-teaser", "logic", "casual", "family-friendly"],
+		"image": "https://via.placeholder.com/400x300/4ecdc4/ffffff?text=Puzzle+Master",
+		"thumbnail": "https://via.placeholder.com/200x150/4ecdc4/ffffff?text=Puzzle",
+		"url": "https://example.com/games/puzzle-master/index.html",
+		"embedType": "iframe",
+		"rating": 4.7,
+		"plays": 15234,
+		"dateAdded": "2024-10-15",
+		"featured": true,
+		"instructions": "<p>Match three or more blocks of the same color to clear them from the board. Create special power-ups by matching 4 or more blocks!</p><ul><li>Clear all blocks to complete the level</li><li>Use power-ups strategically</li><li>Try to get 3 stars on every level</li></ul>",
+		"controls": [
+		  {
+			"key": "Mouse/Touch",
+			"action": "Select and swap blocks"
+		  },
+		  {
+			"key": "Spacebar",
+			"action": "Use power-up"
+		  },
+		  {
+			"key": "R",
+			"action": "Restart level"
+		  }
+		],
+		"seo": {
+		  "metaTitle": "Puzzle Master - Free Online Puzzle Game | Brain Teasers",
+		  "metaDescription": "Play Puzzle Master free online! Match colors, solve patterns, and challenge your brain with 100+ addictive puzzle levels. No download required!",
+		  "keywords": ["puzzle game", "brain teaser", "match 3", "free online game", "logic puzzle"]
+		},
+		"developer": {
+		  "name": "GameDev Studio",
+		  "website": "https://gamedevstudio.example.com"
+		},
+		"technicalSpecs": {
+		  "width": 800,
+		  "height": 600,
+		  "mobile": true,
+		  "touchEnabled": true,
+		  "fullscreenSupported": true
+		}
+	  }
+]

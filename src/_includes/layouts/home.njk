@@ -1,0 +1,111 @@
+---
+layout: base.njk
+title: Free Online Games - Play Now
+description: Play thousands of free online games instantly. No downloads required!
+---
+
+{# Homepage #}
+
+<div class="homepage">
+
+  {# Hero Section #}
+  <section class="hero">
+    <div class="container">
+      <h1>🎮 Play Free Online Games</h1>
+      <p>Thousands of games, zero downloads. Start playing now!</p>
+      
+      {# Search Bar #}
+      <div class="hero-search">
+        <input type="search" placeholder="Search for games...">
+        <button>Search</button>
+      </div>
+
+      {# Quick Categories #}
+      <div class="quick-categories">
+        <a href="/games/action">⚡ Action</a>
+        <a href="/games/puzzle">🧩 Puzzle</a>
+        <a href="/games/strategy">♟️ Strategy</a>
+        <a href="/games/casual">🎲 Casual</a>
+      </div>
+    </div>
+  </section>
+
+  {# Featured Games #}
+  <section class="featured-games">
+    <div class="container">
+      <h2>⭐ Featured Games</h2>
+
+      <div class="games-grid">
+        {% for game in collections.games %}
+          {% if game.data.featured %}
+            <article class="game-card">
+              <a href="/games/{{ game.data.slug }}">
+                <img src="{{ game.data.image }}" alt="{{ game.data.title }}">
+                <h3>{{ game.data.title }}</h3>
+                <p>{{ game.data.category }}</p>
+              </a>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {# In-Feed Ad #}
+      <div class="ad-container ad-infeed">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+             data-ad-slot="6677889900"
+             data-ad-format="fluid"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </section>
+
+  {# Categories Showcase #}
+  <section class="categories">
+    <div class="container">
+      <h2>🎯 Browse by Category</h2>
+
+      <div class="categories-grid">
+        <a href="/games/action" class="category-box">
+          <span>⚡</span>
+          <h3>Action</h3>
+        </a>
+        <a href="/games/puzzle" class="category-box">
+          <span>🧩</span>
+          <h3>Puzzle</h3>
+        </a>
+        <a href="/games/strategy" class="category-box">
+          <span>♟️</span>
+          <h3>Strategy</h3>
+        </a>
+        <a href="/games/casual" class="category-box">
+          <span>🎲</span>
+          <h3>Casual</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {# All Games Grid #}
+  <section class="all-games">
+    <div class="container">
+      <h2>🎮 All Games</h2>
+
+      <div class="games-grid">
+        {% for game in collections.games %}
+          <article class="game-card">
+            <a href="/games/{{ game.data.slug }}">
+              <img src="{{ game.data.image }}" alt="{{ game.data.title }}">
+              <h3>{{ game.data.title }}</h3>
+              <p>{{ game.data.category }}</p>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,16 @@
+[
+	{
+	  "id": "action",
+	  "name": "Action",
+	  "icon": "⚡",
+	  "description": "Fast-paced excitement",
+	  "slug": "action"
+	},
+	{
+	  "id": "puzzle",
+	  "name": "Puzzle", 
+	  "icon": "🧩",
+	  "description": "Brain teasers & logic",
+	  "slug": "puzzle"
+	}
+  ]

@@ -1,0 +1,86 @@
+---
+layout: base.njk
+title: Free Online Games - Play Now
+description: Play thousands of free online games instantly. No downloads required!
+---
+
+{# Homepage #}
+
+<div class="homepage">
+
+  {# Hero Section #}
+  <section class="hero" style="background-image: url('{{site.hero}}')">
+    <div class="container">
+      <h1>Bros Unlocked!</h1>
+  </section>
+
+  {# Featured Games #}
+  <section class="featured-games">
+    <div class="container">
+      <h2>⭐ Featured Games</h2>
+
+      <div class="games-grid">
+        {% for game in games %}
+          {% if game.featured %}
+            <article class="game-card">
+              <a href="/games/{{ game.slug }}">
+                <img src="{{ game.image }}" alt="{{ game.title }}">
+                <h3>{{ game.title }}</h3>
+                <p>{{ game.category }}</p>
+              </a>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {# In-Feed Ad #}
+      <div class="ad-container ad-infeed">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+             data-ad-slot="6677889900"
+             data-ad-format="fluid"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </section>
+
+  {# Categories Showcase #}
+  <section class="categories">
+    <div class="container">
+		<h2>Categories</h2>
+		<div class="categories-grid">
+		{% for category in categories %}
+			<a href="/category/{{ category.slug }}" class="category-box">
+			<span>{{ category.icon }}</span>
+			<h3>{{ category.name }}</h3>
+			<p>{{ category.description }}</p>
+			</a>
+		{% endfor %}
+		</div>
+      </div>
+    </div>
+  </section>
+
+  {# All Games Grid #}
+  <section class="all-games">
+    <div class="container">
+      <h2>All Games</h2>
+
+      <div class="games-grid">
+        {% for game in games %}
+          <article class="game-card">
+            <a href="/games/{{ game.slug }}">
+              <img src="{{ game.image }}" alt="{{ game.title }}">
+              <h3>{{ game.title }}</h3>
+              <p>{{ game.category }}</p>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+</div>

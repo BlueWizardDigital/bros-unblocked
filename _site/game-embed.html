@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>Game</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #000; }
+    body {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+      font: 16px/1.4 Arial, sans-serif;
+    }
+    #game-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    #openfl-content {
+      width: 100%;
+      height: 100%;
+      outline: none;
+    }
+    #loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+      font-size: 18px;
+      opacity: 1;
+      transition: opacity 200ms ease;
+    }
+    #loading.hidden { opacity: 0; }
+    #error {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      color: #ff6b6b;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container" role="application" aria-label="Game">
+    <div id="openfl-content" tabindex="-1"></div>
+    <div id="loading">Loading game…</div>
+    <div id="error" aria-live="polite"></div>
+  </div>
+
+  <script>
+    (function () {
+      const qs = new URLSearchParams(location.search);
+
+      // Required: game bundle URL. Example:
+      // ?game=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fbrodeliver%2Fbb%402%2FBasketBros.js%3Fth%3D644
+      const gameUrlRaw = qs.get("game");
+      const appName = qs.get("app") || "BasketBros"; // OpenFL project/app name
+      const loadTimeoutMs = 15000; // hard stop if the bundle never initializes lime
+
+      const loadingEl = document.getElementById("loading");
+      const errorEl = document.getElementById("error");
+      const mountId = "openfl-content";
+
+      function fail(msg) {
+        errorEl.textContent = msg;
+        loadingEl.classList.remove("hidden");
+      }
+
+      // Minimal URL validation
+      function safeUrl(u) {
+        try {
+          const url = new URL(decodeURIComponent(u));
+          if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+          if (!url.pathname.endsWith(".js")) return null;
+          return url.toString();
+        } catch {
+          return null;
+        }
+      }
+
+      function ready(fn) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          fn();
+        } else {
+          document.addEventListener("DOMContentLoaded", fn, { once: true });
+        }
+      }
+
+      // Keep the canvas sized; OpenFL will create it inside our mount.
+      function setupResizeFocus() {
+        // Keep keyboard focus on the game surface
+        const mount = document.getElementById(mountId);
+        window.addEventListener("focus", () => mount && mount.focus());
+        // Prevent iOS rubber-band scroll while still allowing wheel scroll fallback if needed
+        window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+      }
+
+      function embedWhenReady(startTime) {
+        // Wait for OpenFL/Lime to appear after the bundle loads
+        const deadline = startTime + loadTimeoutMs;
+        (function tick() {
+          if (window.lime && typeof window.lime.embed === "function") {
+            try {
+              window.lime.embed(appName, mountId, 0, 0, { parameters: {} });
+              loadingEl.classList.add("hidden");
+              // Focus the mount so keyboard works immediately
+              const mount = document.getElementById(mountId);
+              mount && mount.focus();
+            } catch (e) {
+              fail("Failed to start game (embed threw). " + String(e));
+            }
+            return;
+          }
+          if (Date.now() > deadline) {
+            fail("Game bundle loaded but Lime/OpenFL didn't initialize in time.");
+            return;
+          }
+          setTimeout(tick, 50);
+        })();
+      }
+
+      ready(() => {
+        setupResizeFocus();
+
+        if (!gameUrlRaw) {
+          fail("No game specified. Add ?game=<encoded .js URL>&app=<AppName>");
+          return;
+        }
+        const gameUrl = safeUrl(gameUrlRaw);
+        if (!gameUrl) {
+          fail("Invalid game URL. Must be http(s) and end with .js");
+          return;
+        }
+
+        // Load the game bundle
+        const s = document.createElement("script");
+        s.src = gameUrl;
+        s.async = true;
+        s.onerror = () => fail("Error loading game bundle.");
+        s.onload = () => embedWhenReady(Date.now());
+        document.body.appendChild(s);
+
+        // Safety: show a subtle “still loading” for a moment
+        setTimeout(() => loadingEl.classList.remove("hidden"), 0);
+      });
+    })();
+  </script>
+</body>
+</html>

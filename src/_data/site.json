@@ -1,0 +1,37 @@
+{
+  "title": "Bros Unblocked!",
+  "description": "The ultimate game portal",
+  "logo": "/images/logo.png",
+  "hero": "/images/games/basket-bros.webp",
+  "adsense": "ca-pub-YOUR_PUBLISHER_ID",
+  "socialLinks": [
+    {
+      "platform": "twitter",
+      "url": "https://twitter.com/example"
+    },
+    {
+      "platform": "discord",
+      "url": "https://discord.gg/example"
+    }
+  ],
+  "quickLinks": [
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "legalLinks": [
+    {
+      "label": "Privacy Policy",
+      "url": "https://bluewizard.com/privacy/"
+    },
+    {
+      "label": "Terms of Service",
+      "url": "https://bluewizard.com/terms"
+    }
+  ]
+}

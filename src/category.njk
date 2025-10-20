@@ -1,0 +1,32 @@
+---
+layout: base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: /category/{{ category.slug }}/
+eleventyCompute:
+  title: "{{ category.name }} Games | {{ site.title }}"
+  description: "{{ category.description }} - {{ gamesInCategory | length }} games"
+---
+
+<div class="category-header">
+  <h1>{{ category.name }} {{ category.icon }}</h1>
+  <p class="category-description">{{ category.description }}</p>
+  
+  {% set categoryGames = games | gamesByCategory(category.slug) %}
+  <p class="game-count">{{ categoryGames | length }} games in this category</p>
+</div>
+
+<div class="container games-grid">
+  {% for game in categoryGames %}
+    <div class="game-card">
+      <a href="/games/{{ game.slug }}/">
+        <img src="{{ game.image }}" alt="{{ game.title }}">
+        <h3>{{ game.title }}</h3>
+        <p class="game-desc">{{ game.description | truncate(100) }}</p>
+        <span class="category-badge">{{ game.category }}</span>
+      </a>
+    </div>
+  {% endfor %}
+</div>

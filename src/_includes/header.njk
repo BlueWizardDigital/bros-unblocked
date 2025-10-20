@@ -1,0 +1,56 @@
+{# Header Template - Used on all pages #}
+
+<header class="site-header">
+  <div class="container">
+    
+    {# Top Banner Ad #}
+    <!-- <div class="ad-container ad-header">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+           data-ad-slot="1234567890"
+           data-ad-format="horizontal"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div> -->
+
+    {# Logo and Navigation #}
+    <div class="header-main">
+      <a href="/" class="logo">
+        <span class="logo-text">{{ site.title }}</span>
+      </a>
+
+      {# Mobile Menu Toggle #}
+      <button class="mobile-menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {# Main Navigation #}
+      <nav class="main-nav">
+        <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+        <a href="/games" {% if page.url == "/games" %}class="active"{% endif %}>Games</a>
+		{% for page in pages %}
+			<a href="/" {% if page.url == "/page.url" %}class="active"{% endif %}>{{ page.title }}</a>
+		{% endfor %}
+        <!-- <a href="/categories" {% if page.url == "/categories" %}class="active"{% endif %}>Categories</a>
+        <a href="/about" {% if page.url == "/about" %}class="active"{% endif %}>About</a>
+        <a href="/contact" {% if page.url == "/contact" %}class="active"{% endif %}>Contact</a> -->
+      </nav>
+
+      {# Search Bar #}
+      <div class="search-container">
+        <input type="search" 
+			id="searchInput" 
+			placeholder="Search games, pages, categories..."
+			autocomplete="off"
+			aria-label="Search games">
+		<div id="searchDropdown" class="search-dropdown"></div>
+      </div>
+    </div>
+
+  </div>
+</header>

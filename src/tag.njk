@@ -1,0 +1,35 @@
+---
+layout: base.njk
+pagination:
+  data: allTags
+  size: 1
+  alias: tag
+permalink: /tag/{{ tag | slug }}/
+eleventyCompute:
+  title: "Games tagged: {{ tag }} | {{ site.title }}"
+  description: "Find all games tagged with {{ tag }}"
+---
+
+<div class="tag-header">
+  <h1>Games tagged: {{ tag }}</h1>
+  
+  {% set taggedGames = games | gamesByTag(tag) %}
+  <p class="game-count">{{ taggedGames | length }} games tagged with "{{ tag }}"</p>
+</div>
+
+<div class="container games-grid">
+  {% if taggedGames | length > 0 %}
+    {% for game in taggedGames %}
+      <div class="game-card">
+        <a href="/games/{{ game.slug }}/">
+          <img src="{{ game.image }}" alt="{{ game.title }}">
+          <h3>{{ game.title }}</h3>
+          <p class="game-desc">{{ game.description | truncate(100) }}</p>
+          <span class="category-badge">{{ game.category }}</span>
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No games found with this tag.</p>
+  {% endif %}
+</div>
