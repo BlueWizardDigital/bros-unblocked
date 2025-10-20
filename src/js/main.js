@@ -10,7 +10,7 @@ async function loadContent() {
   if (allContent) return;
   
   try {
-    const response = await fetch('/content.json');
+    const response = await fetch('./content.json');
     allContent = await response.json();
   } catch (error) {
     console.error('Failed to load content:', error);

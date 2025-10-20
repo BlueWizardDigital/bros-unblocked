@@ -31,14 +31,14 @@
 
       {# Main Navigation #}
       <nav class="main-nav">
-        <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
-        <a href="/games" {% if page.url == "/games" %}class="active"{% endif %}>Games</a>
+        <a href="{{ / | url }}" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+        <a href="{{ /games | url }}" {% if page.url == "/games" %}class="active"{% endif %}>Games</a>
 		{% for page in pages %}
 			<a href="/" {% if page.url == "/page.url" %}class="active"{% endif %}>{{ page.title }}</a>
 		{% endfor %}
         <!-- <a href="/categories" {% if page.url == "/categories" %}class="active"{% endif %}>Categories</a>
-        <a href="/about" {% if page.url == "/about" %}class="active"{% endif %}>About</a>
-        <a href="/contact" {% if page.url == "/contact" %}class="active"{% endif %}>Contact</a> -->
+        <a href="{{ /about| url }}" {% if page.url == "/about" %}class="active"{% endif %}>About</a>
+        <a href="{{ /contact| url }}" {% if page.url == "/contact" %}class="active"{% endif %}>Contact</a> -->
       </nav>
 
       {# Search Bar #}

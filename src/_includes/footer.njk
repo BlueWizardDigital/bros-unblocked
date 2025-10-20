@@ -29,10 +29,8 @@
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/games">All Games</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="{{ / | url }}">Home</a></li>
+          <li><a href="{{ /games | url }}">All Games</a></li>
         </ul>
       </div>
 
@@ -41,7 +39,7 @@
         <h4>Legal</h4>
         <ul>
 		  {% for link in site.legalLinks %}
-			<li><a href="{{ link.url }}" target="_blank">{{ link.label }}</a><li>
+			<li><a href="{{ link.url | url }}" target="_blank">{{ link.label }}</a><li>
 		  {% endfor %}
         </ul>
       </div>

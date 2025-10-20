@@ -21,7 +21,7 @@ eleventyCompute:
   {% if taggedGames | length > 0 %}
     {% for game in taggedGames %}
       <div class="game-card">
-        <a href="/games/{{ game.slug }}/">
+		<a href="{{ '/games/' | url ~ game.slug }}/">
           <img src="{{ game.image }}" alt="{{ game.title }}">
           <h3>{{ game.title }}</h3>
           <p class="game-desc">{{ game.description | truncate(100) }}</p>

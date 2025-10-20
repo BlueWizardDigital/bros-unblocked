@@ -5,7 +5,7 @@ pagination:
   size: 1
   alias: game
   before: function(data) { return data.filter(g => g && g.slug); }
-permalink: "games/{{ game.slug }}/index.html"
+permalink: "/games/{{ game.slug }}/"
 eleventyExcludeFromCollections: true
 title: "{{ game.title }}"
 description: "{{ game.description }}"
@@ -19,7 +19,7 @@ description: "{{ game.description }}"
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Home</a> / 
-      <a href="/games">Games</a> / 
+      <a href="{{ /games | url}}">Games</a> / 
       <span>{{ game.title }}</span>
     </nav>
   </div>
@@ -33,7 +33,7 @@ description: "{{ game.description }}"
         {# Game Info #}
         <h1>{{ game.title }}</h1>
         <div class="game-meta">
-          <a href="/category/{{ game.category | toLowerCase }}"><span class="category">{{ game.category }}</span></a>
+          <a href="{{ '/category/' | url ~ game.category | slug }}" class="tag">{{ game.category }}</a><span class="category">{{ game.category }}</span></a>
         </div>
 
         {# Game Iframe #}
@@ -82,7 +82,7 @@ description: "{{ game.description }}"
           {# Tags #}
           <div class="game-tags">
             {% for tag in game.tags %}
-              <a href="/tag/{{ tag }}" class="tag">{{ tag }}</a>
+              <a href="{{ '/tag/' | url ~ tag | slug }}" class="tag">{{ tag }}</a>
             {% endfor %}
           </div>
         </div>

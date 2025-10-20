@@ -30,7 +30,7 @@ function renderGamesPage(page = 1) {
   
   const html = pageGames.map(game => `
     <div class="game-card">
-      <a href="/games/${game.slug}/">
+	  <a href="{{ '/games/' | url ~ game.slug }}/">
         <img src="${game.image}" alt="${game.title}">
         <h3>${game.title}</h3>
         <p class="game-desc">${game.description.substring(0, 100)}...</p>
