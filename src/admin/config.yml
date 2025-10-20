@@ -7,7 +7,8 @@ backend:
   name: github
   repo: BlueWizardDigital/bros-unblocked
   branch: main
-  app_id: Ov23liXPyuleRKypOkCL
+  base_url: https://bros-unblocked.netlify.app
+  auth_endpoint: api/auth
 
 media_folder: "src/images/games"
 public_folder: "/images/games"
