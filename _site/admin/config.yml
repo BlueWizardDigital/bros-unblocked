@@ -1,7 +1,14 @@
-local_backend: true
+# local_backend: true
+
+# backend:
+#   name: test-repo
 
 backend:
-  name: test-repo
+  name: github
+  repo: BlueWizardDigital/bros-unblocked
+  branch: main
+  auth_endpoint: api/auth
+  base_url: https://bluewizarddigital.github.io/bros-unblocked
 
 media_folder: "src/images/games"
 public_folder: "/images/games"
