@@ -59,14 +59,7 @@ description: "{{ game.description }}"
 
         {# In-Content Ad #}
         <div class="ad-container ad-incontent">
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-               data-ad-slot="2345678901"
-               data-ad-format="rectangle"></ins>
-          <script>
-               (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
+			{% include "components/ad.njk" %}
         </div>
 
         {# Description #}

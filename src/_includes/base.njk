@@ -7,16 +7,11 @@
   {# SEO #}
 <title>{% if game and game.title %}{{ game.title }} | {{ site.title }}{% else %}{{ title or site.title }}{% endif %}</title>
   <meta name="description" content="{{ site.description }}">
-  
-  {# AdSense Verification #}
-  <meta name="google-adsense-account" content="{{ site.adsense }}">
+
   
   {# Stylesheets #}
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
   
-  {# AdSense Script #}
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense }}"
-       crossorigin="anonymous"></script>
 </head>
 
 <body>
