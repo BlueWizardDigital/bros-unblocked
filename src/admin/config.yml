@@ -1,8 +1,3 @@
-# local_backend: true
-
-# backend:
-#   name: test-repo
-
 backend:
   name: github
   repo: BlueWizardDigital/bros-unblocked
@@ -70,8 +65,7 @@ collections:
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
-      
-      # EMBED TYPE SELECTOR
+
       - label: "Embed Type"
         name: "embedType"
         widget: "select"
@@ -79,7 +73,6 @@ collections:
         default: "iframe"
         hint: "Choose 'iframe' for full game URLs, or 'javascript' for .js files"
       
-      # URL FIELD - Used for both types
       - label: "Game URL"
         name: "url"
         widget: "string"
