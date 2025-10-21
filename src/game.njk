@@ -18,7 +18,7 @@ description: "{{ game.description }}"
   {# Breadcrumb #}
   <div class="container">
     <nav class="breadcrumb">
-      <a href="'/' | url">Home</a> / 
+      <a href="{{ '/' | url }}"Home</a> / 
 	  <a href="{{ '/games' | url }}">Games</a> /
       <span>{{ game.title }}</span>
     </nav>
