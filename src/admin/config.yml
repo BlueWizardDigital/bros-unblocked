@@ -64,7 +64,7 @@ collections:
     fields:
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Description", name: "description", widget: "markdown"}
 
       - label: "Embed Type"
         name: "embedType"
