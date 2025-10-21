@@ -6,11 +6,13 @@ let allContent = null;
 let allResults = [];
 const RESULTS_PER_PAGE = 10;
 
+const BASE_URL = '/bros-unblocked/';
+
 async function loadContent() {
   if (allContent) return;
   
   try {
-    const response = await fetch('/bros-unblocked/content.json');
+    const response = await fetch(`${BASE_URL}content.json`);
     allContent = await response.json();
   } catch (error) {
     console.error('Failed to load content:', error);
@@ -85,11 +87,11 @@ function formatResult(item) {
 function getResultLink(item) {
   switch(item.type) {
     case 'game':
-      return `/bros-unblocked/games/${item.slug}/`;
+      return `${BASE_URL}games/${item.slug}/`;
     case 'page':
-      return `/bros-unblocked/${item.slug}/`;
+      return `${BASE_URL}${item.slug}/`;
     case 'category':
-      return `/bros-unblocked/category/${item.slug}/`;
+      return `${BASE_URL}category/${item.slug}/`;
     default:
       return '#';
   }
@@ -143,7 +145,7 @@ async function initHeaderSearch() {
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       const query = e.target.value;
-      window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+      window.location.href = `${BASE_URL}search/?q=${encodeURIComponent(query)}`;
     }
   });
   
