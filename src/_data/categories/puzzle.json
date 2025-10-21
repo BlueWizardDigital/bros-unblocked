@@ -1,7 +1,7 @@
 {
-  "id": "puzzle",
   "name": "Mobile Games",
+  "slug": "mobile-games",
   "icon": "🧩",
-  "description": "Play it on mobile devices.",
-  "slug": "mobile-games"
+  "description": "Play it on mobile devices!!!",
+  "id": "puzzle"
 }
