@@ -9,8 +9,11 @@
 	<script src="https://unpkg.com/decap-cms@3.8.4/dist/decap-cms.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const cms = window.DecapCMS;
-      if (!cms) return;
+	  const cms = window.CMS;
+      if (!cms) {
+        console.error("CMS not loaded");
+        return;
+      }
 
       cms.registerEventListener({
         name: "preSave",
