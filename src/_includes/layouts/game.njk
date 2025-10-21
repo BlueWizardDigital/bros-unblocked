@@ -38,16 +38,10 @@ layout: base.njk
         </div>
 
         {# In-Content Ad #}
-        <div class="ad-container ad-incontent">
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-               data-ad-slot="2345678901"
-               data-ad-format="rectangle"></ins>
-          <script>
-               (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
+		<div class="ad-container">
+				{% import "components/ad.njk" as ads %}
+				{{ ads.adBanner(250, 300) }}
+		</div>
 
         {# Description #}
         <div class="game-description">

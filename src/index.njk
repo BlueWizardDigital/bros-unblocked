@@ -32,21 +32,13 @@ description: Play thousands of free online games instantly. No downloads require
           {% endif %}
         {% endfor %}
       </div>
-
-      {# In-Feed Ad #}
-      <div class="ad-container ad-infeed">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-             data-ad-slot="6677889900"
-             data-ad-format="fluid"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
     </div>
   </section>
 
+  <div class="ad-container">
+    	{% import "components/ad.njk" as ads %}
+		{{ ads.adBanner(250, 300) }}
+  </div>
   {# Categories Showcase #}
   <section class="categories">
     <div class="container">

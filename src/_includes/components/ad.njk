@@ -1,0 +1,12 @@
+{% macro adBanner(height=90, width=728) %}
+<script type="text/javascript">
+	atOptions = {
+		'key' : '{{ site.adsense }}',
+		'format' : 'iframe',
+		'height' : {{ height }},
+		'width' : {{ width }},
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/{{ site.adsense }}/invoke.js"></script>
+{% endmacro %}
