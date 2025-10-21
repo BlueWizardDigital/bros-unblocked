@@ -7,7 +7,7 @@ pagination:
   before: function(data) { return data.filter(g => g && g.slug); }
 permalink: "/games/{{ game.slug }}/"
 eleventyExcludeFromCollections: true
-title: "{{ game.title }}"
+title: "{{ game.title }} | {{ site.title }}"
 description: "{{ game.description }}"
 ---
 
@@ -18,7 +18,7 @@ description: "{{ game.description }}"
   {# Breadcrumb #}
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Home</a> / 
+      <a href="'/' | url">Home</a> / 
 	  <a href="{{ '/games' | url }}">Games</a> /
       <span>{{ game.title }}</span>
     </nav>

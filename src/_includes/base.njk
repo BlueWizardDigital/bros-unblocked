@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   {# SEO #}
-  <title>{{ site.title }}</title>
+<title>{% if game and game.title %}{{ game.title }} | {{ site.title }}{% else %}{{ title or site.title }}{% endif %}</title>
   <meta name="description" content="{{ site.description }}">
   
   {# AdSense Verification #}
