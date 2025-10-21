@@ -3,29 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Completing Authentication...</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <p>Completing authentication...</p>
-  </div>
+  <p>Completing authentication...</p>
   <script>
     (function() {
       try {
@@ -33,29 +13,46 @@
         const authData = params.get('auth');
         
         if (!authData) {
-          document.body.innerHTML = '<div class="container"><p>Error: No authentication data</p></div>';
+          document.body.innerHTML = '<p>Error: No authentication data</p>';
+          return;
+        }
+        
+        if (!window.opener) {
+          document.body.innerHTML = '<p>Authentication complete. You can close this window.</p>';
           return;
         }
         
         const decoded = JSON.parse(atob(authData));
         
-        if (window.opener) {
-          // Send in the format Decap expects
-          window.opener.postMessage(
-            'authorization:github:success:' + JSON.stringify(decoded),
-            window.location.origin
-          );
-          
-          // Also send object format
-          window.opener.postMessage(decoded, window.location.origin);
-          
-          setTimeout(() => window.close(), 500);
-        } else {
-          document.body.innerHTML = '<div class="container"><p>Authentication complete. You can close this window.</p></div>';
-        }
+        console.log('[Auth Callback] Sending message:', decoded);
+        console.log('[Auth Callback] Target origin:', window.location.origin);
+        
+        // Try multiple formats Sveltia might accept
+        
+        // Format 1: Sveltia-specific format
+        window.opener.postMessage({
+          type: 'authorization',
+          provider: 'github',
+          token: decoded.token
+        }, window.location.origin);
+        
+        // Format 2: Legacy string format
+        window.opener.postMessage(
+          'authorization:github:success:' + JSON.stringify(decoded),
+          window.location.origin
+        );
+        
+        // Format 3: Direct payload
+        window.opener.postMessage(decoded, window.location.origin);
+        
+        console.log('[Auth Callback] Messages sent');
+        
+        // Don't auto-close so we can debug
+        document.body.innerHTML = '<p>✅ Authentication messages sent. Check main window. <button onclick="window.close()">Close</button></p>';
+        
       } catch (e) {
-        console.error('Auth callback error:', e);
-        document.body.innerHTML = '<div class="container"><p>Error: ' + e.message + '</p></div>';
+        console.error('[Auth Callback] Error:', e);
+        document.body.innerHTML = '<p>Error: ' + e.message + '</p>';
       }
     })();
   </script>
