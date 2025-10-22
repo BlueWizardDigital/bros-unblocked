@@ -65,11 +65,11 @@ description: "{{ game.description }}"
         {# Description #}
         <div class="game-description">
           <h2>About {{ game.title }}</h2>
-          <p>{{ game.description }}</p>
+          <p>{{ game.description | markdown | safe}}</p>
           
           {% if game.instructions %}
             <h3>How to Play</h3>
-            <div class="instructions">{{ game.instructions | safe }}</div>
+            <div class="instructions">{{ game.instructions | markdown | safe }}</div>
           {% endif %}
 
           {# Tags #}

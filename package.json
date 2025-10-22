@@ -11,5 +11,8 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "decap-cms-app": "^3.8.4"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
   }
 }

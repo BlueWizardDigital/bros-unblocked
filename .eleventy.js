@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const markdownIt = require('markdown-it');
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/css");
@@ -7,6 +8,16 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/admin");
 	eleventyConfig.addPassthroughCopy("src/images");
 	eleventyConfig.addPassthroughCopy("src/game-embed.html");
+
+	const md = markdownIt({
+		html: true,
+		breaks: true,
+		linkify: true
+	  });
+
+	eleventyConfig.addFilter("markdown", function(content) {
+		return md.render(content);
+	});
 
 	eleventyConfig.addFilter("urlencode", function(str) {
 		return encodeURIComponent(str);
