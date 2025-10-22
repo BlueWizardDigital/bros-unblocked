@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   {# SEO #}
-<title>{% if game and game.title %}{{ game.title }} | {{ site.title }}{% else %}{{ title or site.title }}{% endif %}</title>
+  <title>{% if game and game.title %}{{ game.title }} | {{ site.title }}{% else %}{{ title or site.title }}{% endif %}</title>
   <meta name="description" content="{{ site.description }}">
-
   
   {# Stylesheets #}
-  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+  <link rel="stylesheet" href="{{ '/css/style.min.css' | url }}?v={{ buildVersion }}">
   
 </head>
 
-<body>
+<body data-build="{{ buildVersion }}">
   
   {# Include Header #}
   {% include "header.njk" %}
@@ -28,7 +27,7 @@
   {% include "footer.njk" %}
   
   {# Global JavaScript #}
-  <script src="{{ '/js/main.js' | url }}"></script>
+  <script src="{{ '/js/main.min.js' | url }}?v={{ buildVersion }}"></script>
 
   {# Page-specific scripts - override in child templates #}
   {% block pageScripts %}{% endblock %}

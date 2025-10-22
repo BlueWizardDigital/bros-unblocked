@@ -3,14 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx eleventy --serve",
+    "build:css": "postcss src/css/style.css -o src/css/style.min.css",
+	"build:js": "terser src/js/main.js -o src/js/main.min.js --compress --mangle",
+	"build": "npm run build:css && npm run build:js && npx eleventy"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
-    "decap-cms-app": "^3.8.4"
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.1",
+    "decap-cms-app": "^3.8.4",
+    "html-minifier-terser": "^7.2.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "terser": "^5.44.0"
   },
   "dependencies": {
     "markdown-it": "^14.1.0"

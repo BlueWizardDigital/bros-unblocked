@@ -8,6 +8,7 @@ let allResults = [];
 const RESULTS_PER_PAGE = 10;
 const BASE_URL = '/bros-unblocked/';
 const DEBOUNCE_DELAY = 300; // ms
+const BUILD_VERSION = document?.body?.dataset?.build;
 
 // ============================================
 // UTILITY FUNCTIONS
@@ -84,7 +85,7 @@ async function loadContent() {
   if (allContent) return true;
   
   try {
-    const response = await fetch(`${BASE_URL}content.json`);
+    const response = await fetch(`${BASE_URL}content.json?v=${BUILD_VERSION}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

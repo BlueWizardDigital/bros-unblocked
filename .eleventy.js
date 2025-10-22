@@ -1,6 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+
 const markdownIt = require('markdown-it');
+
+const htmlmin = require("html-minifier-terser");
+
+const { execSync } = require("node:child_process");
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/css");
@@ -64,11 +67,31 @@ module.exports = function(eleventyConfig) {
 		return games.filter(game => game.tags && game.tags.includes(tag));
 	});
 
+	eleventyConfig.addTransform("htmlmin", async (content, outputPath) => {
+		if (outputPath && outputPath.endsWith(".html")) {
+		  return await htmlmin.minify(content, {
+			collapseWhitespace: true,
+			removeComments: true,
+			minifyCSS: true,
+			minifyJS: true,
+		  });
+		}
+		return content;
+	  });
+
 	// Global Vars
-	  
 	eleventyConfig.addGlobalData("currentYear", () => {
 		return new Date().getFullYear();
 	  });
+
+	  eleventyConfig.addGlobalData("buildVersion", () => {
+		try {
+		  return execSync("git rev-parse --short HEAD").toString().trim();
+		} catch {
+		  return Date.now().toString();
+		}
+	  });
+
 	return {
 	  pathPrefix: "/bros-unblocked/",
 	  dir: {
