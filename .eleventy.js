@@ -12,6 +12,26 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/images");
 	eleventyConfig.addPassthroughCopy("src/game-embed.html");
 
+	eleventyConfig.addCollection("games", function(collectionApi) {
+		const fs = require('fs');
+		const path = require('path');
+		const gamesDir = path.join(__dirname, 'src/_data/games');
+		
+		// Check if directory exists
+		if (!fs.existsSync(gamesDir)) {
+			console.warn('Games directory not found:', gamesDir);
+			return [];
+		}
+		
+		// Read all JSON files from games directory
+		const files = fs.readdirSync(gamesDir).filter(file => file.endsWith('.json'));
+		
+		return files.map(file => {
+			const content = fs.readFileSync(path.join(gamesDir, file), 'utf8');
+			return JSON.parse(content);
+		});
+	});
+
 	const md = markdownIt({
 		html: true,
 		breaks: true,

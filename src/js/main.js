@@ -593,3 +593,66 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	const form = document.getElementById('contact-form');
+	const statusDiv = document.getElementById('form-status');
+	const submitBtn = form.querySelector('.submit-btn');
+	const issueTypeSelect = document.getElementById('issue-type');
+	const gameSelectGroup = document.getElementById('game-select-group');
+	const gameSelect = document.getElementById('game');
+  
+	// Show/hide game selector based on issue type
+	issueTypeSelect.addEventListener('change', function() {
+	  if (this.value === 'Game Bug Report') {
+		gameSelectGroup.style.display = 'block';
+		gameSelect.required = true;
+	  } else {
+		gameSelectGroup.style.display = 'none';
+		gameSelect.required = false;
+		gameSelect.value = ''; // Clear selection
+	  }
+	});
+  
+	form.addEventListener('submit', async function(e) {
+	  e.preventDefault();
+	  
+	  // Disable button to prevent double submission
+	  submitBtn.disabled = true;
+	  submitBtn.textContent = 'Sending...';
+	  
+	  // Hide previous status
+	  statusDiv.style.display = 'none';
+	  statusDiv.className = '';
+	  
+	  try {
+		const formData = new FormData(form);
+		const response = await fetch(form.action, {
+		  method: 'POST',
+		  body: formData,
+		  headers: {
+			'Accept': 'application/json'
+		  }
+		});
+		
+		if (response.ok) {
+		  statusDiv.textContent = 'Thanks for your message! We\'ll get back to you soon.';
+		  statusDiv.className = 'success';
+		  form.reset();
+		  // Reset conditional field
+		  gameSelectGroup.style.display = 'none';
+		  gameSelect.required = false;
+		} else {
+		  throw new Error('Form submission failed');
+		}
+	  } catch (error) {
+		statusDiv.textContent = 'Oops! Something went wrong. Please try again.';
+		statusDiv.className = 'error';
+	  } finally {
+		submitBtn.disabled = false;
+		submitBtn.textContent = 'Send Message';
+		statusDiv.style.display = 'block';
+	  }
+	});
+  });

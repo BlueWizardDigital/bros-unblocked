@@ -1,0 +1,78 @@
+---
+layout: base.njk
+title: Contact Us
+description: Get in touch with Bros Unblocked
+permalink: /contact/
+---
+
+<div class="contact-page">
+  <div class="contact-header">
+    <h1>Contact Us</h1>
+    <p>Have a question, found a bug, or want to suggest something? We'd love to hear from you!</p>
+  </div>
+
+  <div class="contact-container">
+    <form id="contact-form" action="https://formspree.io/f/{{ site.formspreeId }}" method="POST">
+      
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required 
+          placeholder="Your name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          placeholder="your.email@example.com"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="issue-type">What can we help you with? *</label>
+        <select id="issue-type" name="issue_type" required>
+          <option value="">Select an option...</option>
+          <option value="Site Bug Report">Site Bug Report</option>
+          <option value="Suggestion">Suggestion</option>
+          <option value="Game Bug Report">Game Bug Report</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="game-select-group" style="display: none;">
+        <label for="game">Which game? *</label>
+        <select id="game" name="game">
+          <option value="">Select a game...</option>
+          {% for game in collections.games | sort(attribute="title") %}
+          <option value="{{ game.title }}">{{ game.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          rows="6" 
+          required 
+          placeholder="Tell us more..."
+        ></textarea>
+      </div>
+
+      <!-- Honeypot for spam protection -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <button type="submit" class="submit-btn">Send Message</button>
+      
+      <div id="form-status"></div>
+    </form>
+  </div>
+</div>
