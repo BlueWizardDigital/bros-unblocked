@@ -7,7 +7,11 @@
   "image": "/images/games/add_footballBros_800x400.png",
   "category": "Sports",
   "tags": [
-    "sports, football, game, online, free"
+    "sports",
+    "football",
+    "game",
+    "online",
+    "free"
   ],
   "featured": true,
   "instructions": "Arrow keys or WASD to control your bro. \n\nSpace bar will throw a pass, dive, or stiff arm, depending on the situation."
