@@ -7,7 +7,10 @@
   "image": "/images/games/baseballbros_iogames 1.jpg",
   "category": "Sports",
   "tags": [
-    "sports, baseball, games, online, free"
+    "baseball",
+    "games",
+    "online",
+    "free"
   ],
   "featured": true,
   "instructions": "Move with **arrow keys or WASD**\n\nUse the **space bar** to pitch, slide, or steal"
