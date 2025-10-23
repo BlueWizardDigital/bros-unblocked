@@ -540,6 +540,11 @@
 	grid-template-columns: 1fr 340px;
 	gap: var(--spacing-lg);
   }
+
+  .game-main {
+	min-width: 0;  /* ✅ Critical - allows grid item to shrink below content size */
+	overflow: hidden; 
+  }
   
   .game-main h1 {
 	font-size: clamp(28px, 5vw, 44px);
@@ -679,6 +684,11 @@
   /* ===================================
 	 SIDEBAR
 	 =================================== */
+
+	/* .game-sidebar {
+		width: 300px;
+	} */
+
   .sidebar-widget {
 	background: var(--white);
 	padding: var(--spacing-md);

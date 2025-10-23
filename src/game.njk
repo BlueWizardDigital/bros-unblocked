@@ -91,7 +91,7 @@ description: "{{ game.description }}"
             {% for popular in games | limit(5) %}
               {% if popular.slug %}
               <li>
-                <a href="/games/{{ popular.slug }}/">
+                <a href="{{'/games/' | url ~ popular.slug }}/">
                   {{ popular.title }}
                 </a>
               </li>
@@ -99,7 +99,18 @@ description: "{{ game.description }}"
             {% endfor %}
           </ul>
         </div>
-
+		<div class="ad-container">
+		<script type="text/javascript">
+			atOptions = {
+				'key' : '{{ site.adsense }}',
+				'format' : 'iframe',
+				'height' : 250,
+				'width' : 250,
+				'params' : {}
+			};
+		</script>
+		<script type="text/javascript" src="//www.highperformanceformat.com/{{ site.adsense }}/invoke.js"></script>
+		</div>
       </aside>
 
     </div>
