@@ -87,7 +87,12 @@ collections:
         search_fields: ["name", "slug"]
         value_field: "name"
         display_fields: ["name"]
-      - {label: "Tags", name: "tags", widget: "list"}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        label_singular: "Tag"
+        summary: "{{fields.tag}}"
+        field: { label: "Tag", name: "tag", widget: "string" }
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
       - {label: "Instructions", name: "instructions", widget: "markdown", required: false}
 
