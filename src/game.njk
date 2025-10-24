@@ -32,9 +32,15 @@ description: "{{ game.description }}"
         
         {# Game Info #}
         <h1>{{ game.title }}</h1>
-        <div class="game-meta">
-          <a href="{{ '/category/' | url ~ game.category | slug }}" class="tag"><span class="category">{{ game.category }}</span></a>
-        </div>
+		<div class="game-meta">
+		{% for cat in game.category | asArray %}
+			<a href="{{ ('/category/' ~ (cat | slug)) | url }}" class="tag">
+			<span class="category">
+				 {{ cat | categoryName(categoryMap) }}
+			</span>
+			</a>
+		{% endfor %}
+		</div>
 
         {# Game Iframe #}
 		<div class="game-container">

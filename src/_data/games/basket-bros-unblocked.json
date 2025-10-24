@@ -5,7 +5,10 @@
   "embedType": "iframe",
   "url": "https://brodeliver.github.io/bb/",
   "image": "/images/games/basket-bros.webp",
-  "category": "Sports",
+  "category": [
+    "sports",
+    "mobile-games"
+  ],
   "tags": [
     "MobileGames"
   ],

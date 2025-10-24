@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: github
   repo: BlueWizardDigital/bros-unblocked
@@ -85,7 +87,8 @@ collections:
         widget: "relation"
         collection: "categories"
         search_fields: ["name", "slug"]
-        value_field: "name"
+        value_field: "slug"
+        multiple: true
         display_fields: ["name"]
       - label: "Tags"
         name: "tags"

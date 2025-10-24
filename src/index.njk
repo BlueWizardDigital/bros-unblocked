@@ -4,31 +4,15 @@ title: Bro Unblocked!!
 description: Play thousands of free online games instantly. No downloads required!
 ---
 
-{# Homepage #}
-
 <div class="homepage">
-
-  {# Hero Section #}
-  <!-- <section class="hero" style="background-image: url({{ site.hero | url }})">
-    <div class="container">
-      <h1>{{ site.title }}</h1>
-  </section> -->
-
   {# Featured Games #}
   <section class="featured-games">
     <div class="container">
       <h2>⭐ Featured Games</h2>
-
       <div class="games-grid">
-        {% for game in games %}
+        {% for game in collections.games %}
           {% if game.featured %}
-            <article class="game-card">
-              <a href="{{ '/games/' | url ~ game.slug }}">
-                <img src="{{ game.image | url }}" alt="{{ game.title }}">
-                <h3>{{ game.title }}</h3>
-                <p>{{ game.category }}</p>
-              </a>
-            </article>
+            {% include "components/game-card.njk" %}
           {% endif %}
         {% endfor %}
       </div>
@@ -36,22 +20,21 @@ description: Play thousands of free online games instantly. No downloads require
   </section>
 
   <div class="ad-container">
-	{% include "components/ad.njk" %}
+    {% include "components/ad.njk" %}
   </div>
 
   {# Categories Showcase #}
   <section class="categories">
     <div class="container">
-		<h2>Categories</h2>
-		<div class="categories-grid">
-		{% for category in categories %}
-			<a href="{{ '/category/' | url ~ category.slug }}" class="category-box">
-			<span>{{ category.icon }}</span>
-			<h3>{{ category.name }}</h3>
-			<p>{{ category.description }}</p>
-			</a>
-		{% endfor %}
-		</div>
+      <h2>Categories</h2>
+      <div class="categories-grid">
+        {% for category in collections.categories %}
+          <a href="{{ ('/category/' ~ category.slug) | url }}" class="category-box">
+            <span>{{ category.icon }}</span>
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+          </a>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -60,19 +43,11 @@ description: Play thousands of free online games instantly. No downloads require
   <section class="all-games">
     <div class="container">
       <h2>All Games</h2>
-
       <div class="games-grid">
-        {% for game in games %}
-          <article class="game-card">
-            <a href="{{ '/games/' | url ~ game.slug }}/">
-              <img src="{{ game.image | url }}" alt="{{ game.title }}">
-              <h3>{{ game.title }}</h3>
-              <p>{{ game.category }}</p>
-            </a>
-          </article>
+        {% for game in collections.games %}
+          {% include "components/game-card.njk" %}
         {% endfor %}
       </div>
     </div>
   </section>
-
 </div>

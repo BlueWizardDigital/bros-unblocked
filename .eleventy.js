@@ -1,7 +1,27 @@
-
 const markdownIt = require('markdown-it');
-
+const fs = require('fs');
+const path = require('path');
 const htmlmin = require("html-minifier-terser");
+
+// --- Helpers to avoid duplicated filesystem reads ---
+const CATEGORIES_DIR = path.join(__dirname, 'src/_data/categories');
+const GAMES_DIR = path.join(__dirname, 'src/_data/games');
+
+function readJsonFilesIn(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter(f => f.endsWith('.json'))
+    .map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')));
+}
+
+function buildCategoryMap() {
+  const map = {};
+  for (const obj of readJsonFilesIn(CATEGORIES_DIR)) {
+    if (obj?.slug) map[obj.slug.toLowerCase()] = obj;
+  }
+  return map;
+}
 
 const { execSync } = require("node:child_process");
 
@@ -12,30 +32,37 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/images");
 	eleventyConfig.addPassthroughCopy("src/game-embed.html");
 
-	eleventyConfig.addCollection("games", function(collectionApi) {
-		const fs = require('fs');
-		const path = require('path');
-		const gamesDir = path.join(__dirname, 'src/_data/games');
-		
-		// Check if directory exists
-		if (!fs.existsSync(gamesDir)) {
-			console.warn('Games directory not found:', gamesDir);
-			return [];
-		}
-		
-		// Read all JSON files from games directory
-		const files = fs.readdirSync(gamesDir).filter(file => file.endsWith('.json'));
-		
-		return files.map(file => {
-			const content = fs.readFileSync(path.join(gamesDir, file), 'utf8');
-			return JSON.parse(content);
+	// collection management
+	eleventyConfig.addCollection("games", function() {
+		const catMap = buildCategoryMap();
+		const gameObjs = readJsonFilesIn(GAMES_DIR);
+
+		return gameObjs.map(game => {
+		  const slugs = Array.isArray(game.category) ? game.category : (game.category ? [game.category] : []);
+		  game.category = slugs; // keep as slugs
+		  game.categoriesResolved = slugs.map(s => catMap[s.toLowerCase()] || { slug: s, name: s });
+		  return game;
 		});
-	});
+	  });
+	
+
+	eleventyConfig.addCollection("categories", function() {
+		return readJsonFilesIn(CATEGORIES_DIR);
+	  });
+
+	  eleventyConfig.addGlobalData("categoryMap", () => buildCategoryMap());
+	
 
 	const md = markdownIt({
 		html: true,
 		breaks: true,
 		linkify: true
+	  });
+
+	  eleventyConfig.addFilter("categoryName", function(slug, categoryMap) {
+		if (!slug) return "";
+		const key = String(slug).toLowerCase();
+		return (categoryMap && categoryMap[key]?.name) || slug;
 	  });
 
 	eleventyConfig.addFilter("markdown", function(content) {
@@ -72,11 +99,29 @@ module.exports = function(eleventyConfig) {
 		return str.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 	});
 
-	eleventyConfig.addFilter("gamesByCategory", function(games, categorySlug) {
-		return games.filter(game => 
-			game.category && game.category.toLowerCase() === categorySlug.toLowerCase()
-		  );
-	});
+	eleventyConfig.addFilter("gamesByCategory", function (games, categorySlug) {
+		console.log('games, categorySlug', categorySlug);
+		if (!Array.isArray(games)) return [];
+	  
+		return games.filter((game) => {
+		  if (!game.category) return false;
+	  
+		  if (Array.isArray(game.category)) {
+			// multiple categories
+			return game.category.some(
+			  (cat) => cat.toLowerCase() === categorySlug.toLowerCase()
+			);
+		  }
+	  
+		  // single category
+		  return game.category.toLowerCase() === categorySlug.toLowerCase();
+		});
+	  });
+
+	  eleventyConfig.addFilter("asArray", (v) => {
+		if (v == null) return [];
+		return Array.isArray(v) ? v : [v];
+	  });
 
 	eleventyConfig.addFilter("toLowerCase", function(str) {
 		return str.toLowerCase();

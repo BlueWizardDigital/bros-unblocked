@@ -1,0 +1,17 @@
+{% set slugs = (game.category | default([])) | asArray %}
+
+<article class="game-card">
+  <a href="{{ ('/games/' ~ game.slug ~ '/') | url }}">
+    <img src="{{ game.image | url }}" alt="{{ game.title }}">
+    <h3>{{ game.title }}</h3>
+    <p>
+      {% if slugs | length %}
+        {% for slug in slugs %}
+          <span class="badge">{{ slug | categoryName(categoryMap) }}</span>{% if not loop.last %} {% endif %}
+        {% endfor %}
+      {% else %}
+        <span class="badge">Uncategorized</span>
+      {% endif %}
+    </p>
+  </a>
+</article>

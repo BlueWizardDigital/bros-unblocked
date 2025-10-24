@@ -5,7 +5,10 @@
   "embedType": "iframe",
   "url": "https://brodeliver.github.io/fb/",
   "image": "/images/games/add_footballBros_800x400.png",
-  "category": "Sports",
+  "category": [
+    "sports",
+    "mobile-games"
+  ],
   "tags": [
     "sports",
     "football",

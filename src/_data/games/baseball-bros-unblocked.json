@@ -5,7 +5,10 @@
   "embedType": "iframe",
   "url": "https://brodeliver.github.io/bbb/",
   "image": "/images/games/baseballbros_iogames 1.jpg",
-  "category": "Sports",
+  "category": [
+    "sports",
+    "mobile-games"
+  ],
   "tags": [
     "sports",
     "baseball",
